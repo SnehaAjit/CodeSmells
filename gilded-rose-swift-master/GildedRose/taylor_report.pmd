@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd>
+    <file name="/Users/i328244/git/gilded-rose-swift/GildedRose/GildedRose.swift">
+        <violation beginline="11" endline="64" rule="ExcessiveMethodLength" class="GildedRose" method="updateQuality(items:)" value="48" externalInfoUrl="http://phpmd.org/rules/codesize.html#excessivemethodlength" priority="3">Method 'updateQuality(items:)' has too many lines: 48. The allowed number of lines in a method is 20</violation>
+        <violation beginline="11" endline="64" rule="CyclomaticComplexity" class="GildedRose" method="updateQuality(items:)" value="18" externalInfoUrl="http://phpmd.org/rules/codesize.html#cyclomaticcomplexity" priority="2">The method 'updateQuality(items:)' has a Cyclomatic Complexity of 18. The allowed Cyclomatic Complexity is 5</violation>
+        <violation beginline="11" endline="64" rule="NestedBlockDepth" class="GildedRose" method="updateQuality(items:)" value="6" externalInfoUrl="http://docs.oclint.org/en/dev/rules/size.html#nestedblockdepth" priority="3">Method 'updateQuality(items:)' has a block depth of 6. The allowed block depth is 3</violation>
+    </file>
+</pmd>
