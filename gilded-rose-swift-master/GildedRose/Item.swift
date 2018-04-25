@@ -15,3 +15,4 @@ public struct Item: Equatable {
 public func ==(lhs: Item, rhs: Item) -> Bool {
     return lhs.name == rhs.name && lhs.sellIn == rhs.sellIn && lhs.quality == rhs.quality
 }
+

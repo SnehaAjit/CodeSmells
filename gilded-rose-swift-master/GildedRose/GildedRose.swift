@@ -12,16 +12,11 @@ public class GildedRose {
         for item in items {
             var item = item
             switch (item.name) {
-            case "Aged Brie" :
-                item = updateAgedBrieItem(item: &item)
-            case "Backstage passes to a TAFKAL80ETC concert" :
-                item = updateBackstageItem(item: &item)
-            case "Sulfuras, Hand of Ragnaros" :
-                print("Do Nothing")
-            case "Conjured Mana Cake" :
-                item = updateConjuredItem(item: &item)
-            default :
-                item = updateGeneralItem(item: &item)
+            case "Aged Brie" : item = updateAgedBrieItem(item: &item)
+            case "Backstage passes to a TAFKAL80ETC concert" : item = updateBackstageItem(item: &item)
+            case "Sulfuras, Hand of Ragnaros" : print("Do Nothing")
+            case "Conjured Mana Cake" : item = updateConjuredItem(item: &item)
+            default : item = updateGeneralItem(item: &item)
             }
             updatedItems.append(item)
         }
