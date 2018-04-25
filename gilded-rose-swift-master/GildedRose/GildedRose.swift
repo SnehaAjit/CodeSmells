@@ -25,12 +25,9 @@ public class GildedRose {
     
     public static func updateAgedBrieItem( item:inout Item) -> Item {
         if item.sellIn <= 0 {
-                item.quality = item.quality + 2
+            item = updateItemQuality(item: &item, factor: 2, decrement: false)
         } else {
-            item.quality = item.quality + 1
-        }
-        if item.quality > 50 {
-            item.quality = 50
+            item = updateItemQuality(item: &item, factor: 1, decrement: false)
         }
         item.sellIn = item.sellIn - 1
         return item
@@ -40,14 +37,11 @@ public class GildedRose {
         if(item.sellIn <= 0) {
             item.quality = 0
         }else if item.sellIn < 6 {
-            item.quality = item.quality + 3
+            item = updateItemQuality(item: &item, factor: 3, decrement: false)
         } else if item.sellIn < 11 {
-            item.quality = item.quality + 2
+            item = updateItemQuality(item: &item, factor: 2, decrement: false)
         }else {
-            item.quality = item.quality + 1
-        }
-        if(item.quality > 50) {
-            item.quality = 50
+            item = updateItemQuality(item: &item, factor: 1, decrement: false)
         }
         item.sellIn = item.sellIn - 1
         return item
@@ -55,12 +49,9 @@ public class GildedRose {
     
     public static func updateGeneralItem( item:inout Item) -> Item {
         if item.sellIn <= 0 {
-            item.quality = item.quality - 2
+            item = updateItemQuality(item: &item, factor: 2, decrement: true)
         } else {
-            item.quality = item.quality - 1
-        }
-        if(item.quality < 0) {
-            item.quality = 0
+            item = updateItemQuality(item: &item, factor: 1, decrement: true)
         }
         item.sellIn = item.sellIn - 1
         return item
@@ -68,14 +59,26 @@ public class GildedRose {
     
     public static func updateConjuredItem( item:inout Item) -> Item {
         if item.sellIn <= 0 {
-            item.quality = item.quality - 4
+            item = updateItemQuality(item: &item, factor: 4, decrement: true)
         } else {
-            item.quality = item.quality - 2
+            item = updateItemQuality(item: &item, factor: 2, decrement: true)
+        }
+        item.sellIn = item.sellIn - 1
+        return item
+    }
+    
+    public static func updateItemQuality( item:inout Item, factor: Int, decrement:Bool) -> Item{
+        if(decrement) {
+            item.quality = item.quality - factor
+        } else {
+            item.quality = item.quality + factor
         }
         if(item.quality < 0) {
             item.quality = 0
         }
-        item.sellIn = item.sellIn - 1
+        if(item.quality > 50) {
+            item.quality = 50
+        }
         return item
     }
 }
