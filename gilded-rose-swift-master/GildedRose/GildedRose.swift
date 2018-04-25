@@ -12,63 +12,58 @@ public class GildedRose {
         for item in items {
             var item = item
             switch (item.name) {
-            case "Aged Brie" : item = updateAgedBrieItem(item: &item)
-            case "Backstage passes to a TAFKAL80ETC concert" : item = updateBackstageItem(item: &item)
-            case "Sulfuras, Hand of Ragnaros" : print("Do Nothing")
-            case "Conjured Mana Cake" : item = updateConjuredItem(item: &item)
-            default : item = updateGeneralItem(item: &item)
+                case Constants.agedBrie : updateAgedBrieItem(item: &item)
+                case Constants.concertBackstage : updateBackstageItem(item: &item)
+                case Constants.sulfuras : print("Do Nothing")
+                case Constants.conjuredItem : updateConjuredItem(item: &item)
+                default : updateGeneralItem(item: &item)
+            }
+            if item.name != "Sulfuras, Hand of Ragnaros" {
+              updateSellinForItem(item: &item)
             }
             updatedItems.append(item)
         }
         return updatedItems
     }
     
-    public static func updateAgedBrieItem( item:inout Item) -> Item {
+    public static func updateAgedBrieItem( item:inout Item){
         if item.sellIn <= 0 {
-            item = updateItemQuality(item: &item, factor: 2)
+            updateItemQuality(item: &item, factor: 2)
         } else {
-            item = updateItemQuality(item: &item, factor: 1)
+            updateItemQuality(item: &item, factor: 1)
         }
-        
-        item.sellIn = item.sellIn - 1
-        return item
     }
     
-    public static func updateBackstageItem( item:inout Item) -> Item {
+    public static func updateBackstageItem( item:inout Item) {
         if(item.sellIn <= 0) {
             item.quality = 0
         }else if item.sellIn < 6 {
-            item = updateItemQuality(item: &item, factor: 3)
+            updateItemQuality(item: &item, factor: 3)
         } else if item.sellIn < 11 {
-            item = updateItemQuality(item: &item, factor: 2)
+            updateItemQuality(item: &item, factor: 2)
         }else {
-            item = updateItemQuality(item: &item, factor: 1)
+            updateItemQuality(item: &item, factor: 1)
         }
-        item.sellIn = item.sellIn - 1
-        return item
     }
     
-    public static func updateGeneralItem( item:inout Item) -> Item {
+    public static func updateGeneralItem( item:inout Item) {
         if item.sellIn <= 0 {
-            item = updateItemQuality(item: &item, factor: -2)
+            updateItemQuality(item: &item, factor: -2)
         } else {
-            item = updateItemQuality(item: &item, factor: -1)
+            updateItemQuality(item: &item, factor: -1)
         }
-        item.sellIn = item.sellIn - 1
-        return item
     }
     
-    public static func updateConjuredItem( item:inout Item) -> Item {
+    public static func updateConjuredItem( item:inout Item) {
         if item.sellIn <= 0 {
-            item = updateItemQuality(item: &item, factor: -4)
+           updateItemQuality(item: &item, factor: -4)
         } else {
-            item = updateItemQuality(item: &item, factor: -2)
+           updateItemQuality(item: &item, factor: -2)
         }
-        item.sellIn = item.sellIn - 1
-        return item
+      
     }
     
-    public static func updateItemQuality( item:inout Item, factor: Int) -> Item{
+    public static func updateItemQuality( item:inout Item, factor: Int) {
         item.quality = item.quality + factor
         if(item.quality < 0) {
             item.quality = 0
@@ -76,6 +71,9 @@ public class GildedRose {
         if(item.quality > 50) {
             item.quality = 50
         }
-        return item
+    }
+    
+    public static func updateSellinForItem(item:inout Item) {
+         item.sellIn = item.sellIn - 1
     }
 }

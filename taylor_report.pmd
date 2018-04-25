@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd>
+    <file name="/Users/setup/Git/CodeSmells/gilded-rose-swift-master/GildedRose/GildedRose.swift">
+        <violation beginline="10" endline="24" rule="CyclomaticComplexity" class="GildedRose" method="updateQualityOfItems(items:)" value="7" externalInfoUrl="http://phpmd.org/rules/codesize.html#cyclomaticcomplexity" priority="2">The method 'updateQualityOfItems(items:)' has a Cyclomatic Complexity of 7. The allowed Cyclomatic Complexity is 5</violation>
+        <violation beginline="10" endline="24" rule="NestedBlockDepth" class="GildedRose" method="updateQualityOfItems(items:)" value="4" externalInfoUrl="http://docs.oclint.org/en/dev/rules/size.html#nestedblockdepth" priority="3">Method 'updateQualityOfItems(items:)' has a block depth of 4. The allowed block depth is 3</violation>
+    </file>
+    <file name="/Users/setup/Git/CodeSmells/gilded-rose-swift-master/GildedRoseTests/GildedRoseTests.swift">
+        <violation beginline="12" endline="245" rule="TooManyMethods" class="GildedRoseTests" value="28" externalInfoUrl="http://phpmd.org/rules/codesize.html#toomanymethods" priority="3">Class 'GildedRoseTests' has too many methods: 28. The allowed number of methods in class is 10</violation>
+    </file>
+</pmd>
