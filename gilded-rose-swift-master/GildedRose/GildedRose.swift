@@ -18,6 +18,8 @@ public class GildedRose {
                 item = updateBackstageItem(item: &item)
             case "Sulfuras, Hand of Ragnaros" :
                 print("Do Nothing")
+            case "Conjured Mana Cake" :
+                item = updateConjuredItem(item: &item)
             default :
                 item = updateGeneralItem(item: &item)
             }
@@ -44,7 +46,14 @@ public class GildedRose {
         if item.quality < 50 {
             item.quality = item.quality + 1
             if item.sellIn < 11 {
-                item.quality = item.quality + 1
+                if item.quality < 50 {
+                    item.quality = item.quality + 1
+                }
+            }
+            if item.sellIn < 6 {
+                if item.quality < 50 {
+                    item.quality = item.quality + 1
+                }
             }
         }
         item.sellIn = item.sellIn - 1
@@ -55,11 +64,30 @@ public class GildedRose {
     }
     
     public static func updateGeneralItem( item:inout Item) -> Item {
-        item.quality = item.quality - 1
+        if item.quality > 0 {
+            item.quality = item.quality - 1
+        }
         item.sellIn = item.sellIn - 1
         if item.sellIn < 0 {
             if item.quality > 0 {
                 item.quality = item.quality - 1
+            }
+        }
+        return item
+    }
+    
+    public static func updateConjuredItem( item:inout Item) -> Item {
+        if item.quality > 1 {
+            item.quality = item.quality - 2
+        } else {
+            item.quality = 0
+        }
+        item.sellIn = item.sellIn - 1
+        if item.sellIn < 0 {
+            if item.quality > 1 {
+                item.quality = item.quality - 2
+            } else {
+                item.quality = 0
             }
         }
         return item
