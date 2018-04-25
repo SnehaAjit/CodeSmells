@@ -29,6 +29,7 @@ public class GildedRose {
         } else {
             item = updateItemQuality(item: &item, factor: 1)
         }
+        
         item.sellIn = item.sellIn - 1
         return item
     }
