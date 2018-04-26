@@ -14,11 +14,10 @@ public class GildedRose {
             switch (item.name) {
                 case Constants.agedBrie : updateAgedBrieItem(item: &item)
                 case Constants.concertBackstage : updateBackstageItem(item: &item)
-                case Constants.sulfuras : print("Do Nothing")
                 case Constants.conjuredItem : updateConjuredItem(item: &item)
                 default : updateGeneralItem(item: &item)
             }
-            if item.name != "Sulfuras, Hand of Ragnaros" {
+            if item.name != Constants.sulfuras {
               updateSellinForItem(item: &item)
             }
             updatedItems.append(item)
@@ -47,10 +46,12 @@ public class GildedRose {
     }
     
     public static func updateGeneralItem( item:inout Item) {
-        if item.sellIn <= 0 {
-            updateItemQuality(item: &item, factor: -2)
-        } else {
-            updateItemQuality(item: &item, factor: -1)
+        if(item.name != Constants.sulfuras) {
+            if item.sellIn <= 0 {
+                updateItemQuality(item: &item, factor: -2)
+            } else {
+                updateItemQuality(item: &item, factor: -1)
+            }
         }
     }
     
